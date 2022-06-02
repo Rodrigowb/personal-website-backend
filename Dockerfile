@@ -20,6 +20,12 @@ ARG DEV=false
 # Install depndencies in the image and create a docker venv
 RUN python -m venv /py && \
   /py/bin/pip install --upgrade pip && \
+  # CONFIG 3
+  # Dependencies to install psycopgs
+  apk add --update --no-cache postgresql-client && \
+  apk add --update --no-cache --virtual .tmp-build-deps \
+  build-base postgresql-dev musl-dev && \
+  # END 3
   /py/bin/pip install -r /tmp/requirements.txt && \
   # CONFIG 2
   if [ $DEV = "true" ]; \
@@ -27,6 +33,10 @@ RUN python -m venv /py && \
   fi && \
   # END 2
   rm -rf /tmp && \
+  # CONFIG 3
+  # Keep dockerfile lightweight
+  apk del .tmp-build-deps && \
+  # END 3
   adduser \
   --disabled-password \
   --no-create-home \

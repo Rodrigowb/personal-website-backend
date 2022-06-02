@@ -1,2 +1,6 @@
+# CONFIG 1
 Django>=3.2.4,<3.3
 djangorestframework>=3.12.4,<3.13
+# CONFIG 2
+psycopg2>=2.8.6,<2.9
+# END 2
