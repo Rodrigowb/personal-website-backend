@@ -1,0 +1,19 @@
+# CONFIG 1
+# Set the version of docker compose 
+version: "3.9"
+
+# Define app service
+services:
+  app:
+    build:
+      context: .
+      # CONFIG 2
+      args:
+        - DEV=true
+      # END 2
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
