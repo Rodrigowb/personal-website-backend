@@ -1,9 +1,9 @@
 ; CONFIG 1
 ; Exclude unwanted files to be linted
+
 [flake8]
 exclude = 
   migrations,
   __pycache__,
   manage.py,
   settings.py
-  
